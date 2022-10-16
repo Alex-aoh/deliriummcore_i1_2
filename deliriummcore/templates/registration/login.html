@@ -1,0 +1,29 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="container-fluid">
+  <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    
+    <h2>Log In</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Log In</button>
+    </form>
+
+    <div class="container-fluid">
+      <a href="{% url 'accounts:signup'%}">
+        Sign Up
+      </a> 
+      <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

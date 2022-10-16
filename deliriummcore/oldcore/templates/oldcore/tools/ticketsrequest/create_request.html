@@ -1,0 +1,72 @@
+{% extends "oldcore/base.html"%}
+
+{% block title %}Wavess Core{% endblock %}
+
+{% block content %}
+
+
+
+<h1>Crear Tickets Request</h1>
+
+
+    <div class="card mb-4">
+        <div class="card-header py-3">
+            <div class="row justify-content-between">
+                <div class="col-xl-4 col-md-6">
+                    <h6 class="m-0 font-weight-bold text-primary">Evento: {{ event.name }}</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Fase: {{ fase.name }} - Precio: {{ fase.price }} MXN</h6>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="text-end ">
+                        <a href="{% url 'oldcore:index' %}"><button class="btn btn-secondary btn-sm">Regresar</button></a></div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+
+
+            <form action="{% url 'oldcore:new_ticket_request' %}" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Tickets</span>
+                    <input type="number" name="q_tickets" class="form-control me-1" placeholder="Cantidad" aria-label="Cantidad" aria-describedby="basic-addon1">
+                    <span class="input-group-text" id="basic-addon1">Cliente</span>
+                    <input type="text" name="client" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <label class="input-group-text">Metódo de Pago</label>
+                    
+
+                    <select name="payment_method" class="form-select me-1" id="payment_method">
+                      <option selected value="CASH">Efectivo</option>
+                      <option value="TRANSFER">Transferencía</option>
+                      <option value="DEPOSIT">Depósito</option>
+                    </select>
+
+                    <span class="input-group-text" id="basic-addon1">Referencía de Pago</span>
+                    <input type="text" name="reference" class="form-control" placeholder="Referencía" aria-label="Referencía" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Comentarios</label>
+                    <textarea class="form-control" name="context" id="context" rows="3"></textarea>
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <div class="mb-3">
+                      <label for="formFile" class="form-label">Comprobante</label>
+                      <input class="form-control" name="comprobante" type="file" id="formFile">
+                    </div>
+                  </div>
+
+
+                  <button type="submit" class="btn btn-primary text-center">Crear</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

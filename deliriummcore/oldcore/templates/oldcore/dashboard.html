@@ -1,0 +1,89 @@
+{% extends "oldcore/base.html"%}
+
+{% block title %}Dashboard - Wavess Core{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <h1>Dashboard</h1>
+        <p>Hola {{ user.username }}!</p>
+        
+        <div class="card shadow mb-4 ">
+            <div class="card-body ">
+                <ul class="nav justify-content-center">
+                  
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'oldcore:create_request' %}">Crear Request</a>
+                    </li>
+                    <a class="nav-link" href="{% url 'oldcore:my_requests' %}">Ver mis Requests</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="container mt-3">
+            <h2>Herramientas</h2>
+        </div>
+
+
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-4">
+
+                <div class="col p-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Manejo de Efectivo</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Faltante: {{ debt_cash }} MXN</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Total: {{ all_cash }} MXN</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Pagado: {{ paid_cash }} MXN</h6>
+                    
+                    
+                            <a href="" class="card-link">Entrar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col p-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Mis Ventas</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Vendido: {{ ap_cash }} MXN</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Boletos: {{ boletos }}</h6>
+                            <a href="" class="card-link">Entrar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col p-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Comisiones</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Vendido: {{ ap_cash }} MXN</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Comisión: {{ comision }} MXN</h6>
+                            <a href="" class="card-link">Entrar</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="container">
+        <p>Hola</p>
+        <p>Hola 2</p>
+    </div>
+    
+</div>
+
+
+
+{% endblock %}

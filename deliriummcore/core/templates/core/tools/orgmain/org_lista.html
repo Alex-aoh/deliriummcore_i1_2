@@ -1,0 +1,34 @@
+{% extends "core/base.html"%}
+
+{% block title %}Lista de Organizadores{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="py-2">
+        <a href="{% url 'core:tool_orgmain_index' %}"><button class="btn btn-dark">Regresar</button></a>
+    </div>
+    
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1>{{ tool.verbosename }}</h1>
+        <p>Lista de Organizadores</p>
+
+        <div class="container mt-3">
+            <h2>Todos los Organizadores</h2>
+        </div>
+        <div class="container">
+            {% if orgs %}
+            {% for org in orgs %}
+             <p>{{ org.name }}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+    </div>
+    
+</div>
+
+
+
+{% endblock %}

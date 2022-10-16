@@ -1,0 +1,67 @@
+{% extends "core/base.html"%}
+
+{% block title %}{{ tool.verbosename }}{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1>{{ tool.verbosename }}</h1>
+        <p>Hola {{ user.username }}!</p>
+
+        <div class="card shadow mb-4 ">
+          <div class="card-body ">
+              <ul class="nav justify-content-center">
+                
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'core:tool_orgmain_add_org' %}">Crear Marca</a>
+                  </li>
+                  <a class="nav-link" href="{% url 'core:tool_orgmain_add_org' %}">Borrar Marca</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+
+        
+
+        <div class="container pt-5">
+            <div class="d-flex justify-content-center align-items-center">
+                <h1>Mis Marcas</h1>
+            </div>
+            {% if brands %}
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-4">
+              {% for brand in brands %}
+              <div class="col p-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ brand.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ brand.org.name }}</h6>
+                    <img class="card-img-top" src="{{ brand.logo.url }}" alt="Card image">
+                    <p class="card-text">{{ brand.description }}</p>
+                    <a href="#" class="card-link">Editar Marca</a>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+            
+
+
+
+              
+
+            
+          </div>
+
+        
+
+    </div>
+
+    
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "oldcore/base.html"%}
+{% load static %}
+{% block title %}Dashboard ADMIN - DLMM{% endblock %}
+
+{% block head %}
+
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#lista1').DataTable({
+                "search": {
+                  "caseInsensitive": true
+                }
+            }
+        ) 
+    } );
+</script>
+{% endblock head %}
+
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <h1>Todas las Requests</h1>
+        <p>Hola {{ user.username }}!</p>
+        <div class="container-fluid">
+
+            <div class="table-responsive">
+                <table id="lista1" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Status</th>
+                            <th>Tickets</th>
+                            <th>Total</th>
+                            <th>RP</th>
+                            <th>Método</th>
+                            <th>View</th>
+                            <th>Admin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for req in requests %}
+                        {% if req.status == "AP" %}
+                        <tr class="table-success">
+
+                        {% elif req.status == "PE" %}
+                        <tr class="table-warning">
+                        {% else %}
+                        <tr>
+                        {% endif %}
+                        
+                            <th>{{ req.id }}</th>
+                            <th>{{ req.get_status_display}}</th>
+                            <th>{{ req.q_tickets }}</th>
+                            <th>{{ req.total }}$</th>
+                            <th>{{ req.user.username }}</th>
+                            <th>{{ req.payment_method }}</th>
+                            <th><a href="{% url 'oldcore:request_view' req.id %}"><img src="{% static 'core/icons/square_and_pencil_black.svg' %}" alt="View" height=20 width=20></a></th>
+                            <th><a href="{% url 'oldcore:admin_request_view' req.id %}"><img src="{% static 'core/icons/a_square_black.svg' %}" alt="Admin" height=20 width=20></a></th>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Status</th>
+                            <th>Tickets</th>
+                            <th>Total</th>
+                            <th>RP</th>
+                            <th>Método</th>
+                            <th>View</th>
+                            <th>Admin</th>
+        
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </div>
+    
+    
+    </div>
+    
+</div>
+
+
+
+{% endblock %}

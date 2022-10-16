@@ -1,0 +1,38 @@
+{% extends "oldcore/base.html"%}
+
+{% block title %}Wavess Core{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <h1>OldCORE</h1>
+        <p>Hola {{ user.username }}!</p>
+        
+        <div class="card shadow mb-4 ">
+            <div class="card-body ">
+                <ul class="nav justify-content-center">
+                  
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'oldcore:create_request' %}">Crear Request</a>
+                    </li>
+                    <a class="nav-link" href="{% url 'oldcore:my_requests' %}">Ver mis Requests</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <p>Hola</p>
+        <p>Hola 2</p>
+    </div>
+    
+</div>
+
+
+
+{% endblock %}

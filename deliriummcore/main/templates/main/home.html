@@ -1,0 +1,27 @@
+{% extends "main/base.html"%}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        
+
+        <h1>Bienvenido {{ user.username }}</h1>
+        <p>Hi {{ user.username }}!</p>
+
+    </div>
+
+    <div class="container">
+        <p>Hola</p>
+        <p>Hola 2</p>
+    </div>
+    
+</div>
+
+
+
+{% endblock %}

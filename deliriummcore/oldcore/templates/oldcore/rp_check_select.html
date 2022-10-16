@@ -1,0 +1,45 @@
+{% extends "oldcore/base.html"%}
+
+{% block title %}RP Check - DLMM{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1>RP Check</h1>
+        <p>Seleccionar Usuario</p>
+
+
+
+        {% if users %}
+        <form class="pt-3" action="{% url 'oldcore:rp_check_select' %}" method="POST" >
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <select class="form-select" name="us" aria-label="Select ORG">
+                    <option disabled selected>Elige Usuario..</option>
+                    {% for u in users %}
+                    <option value="{{ u.user.username }}">{{ u.user.username }}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Seleccionar</button>
+            </div>
+        {% endif %}
+
+            
+
+
+
+
+    </div>
+    
+</div>
+
+
+
+{% endblock %}

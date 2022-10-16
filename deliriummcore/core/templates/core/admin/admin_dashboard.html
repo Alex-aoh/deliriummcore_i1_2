@@ -1,0 +1,52 @@
+{% extends "core/base.html"%}
+
+{% block title %}Dashboard ADMIN - DLMM{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <h1>Dashboard</h1>
+        <p>Hola {{ user.username }}!</p>
+        
+        <div class="container mt-3">
+            <h2>Herramientas Administrador</h2>
+        </div>
+
+
+      {% if tools %}
+        <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-4">
+
+      {% for tool in tools %}
+        <div class="col p-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ tool.verbosename }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              
+              <p class="card-text">{{ tool.description }}</p>
+              <a href="/core/tools/{{ tool.id }}" class="card-link">Entrar</a>
+
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+        </div>
+        </div>
+      {% endif %}
+
+      </div>
+
+    <div class="container">
+        <p>Hola</p>
+        <p>Hola 2</p>
+    </div>
+    
+</div>
+
+
+
+{% endblock %}

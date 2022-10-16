@@ -1,0 +1,17 @@
+{% extends "registration/base.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <h2>Sign up</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

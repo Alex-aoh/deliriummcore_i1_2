@@ -1,0 +1,50 @@
+{% extends "core/base.html"%}
+
+{% block title %}Seleccionar Organizador{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="py-2">
+        <a href="{% url 'core:tool_orgmain_index' %}"><button class="btn btn-dark">Regresar</button></a>
+    </div>
+    
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1>{{ tool.verbosename }}</h1>
+        <p>Seleccionar Organizador </p>
+
+
+
+        {% if orgs %}
+        <form class="pt-3" action="{% url 'core:tool_brandmain_index' %}" method="POST" >
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <select class="form-select" name="org" aria-label="Select ORG">
+                    <option disabled selected>Elige ORG..</option>
+                    {% for org in orgs %}
+                    <option value="{{ org.id }}">{{ org.id }} - {{ org.name }}</option>
+                    {% endfor %}
+                    <option value="1">One</option>
+        
+        
+                </select>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Seleccionar</button>
+            </div>
+        {% endif %}
+
+            
+
+
+
+
+    </div>
+    
+</div>
+
+
+
+{% endblock %}

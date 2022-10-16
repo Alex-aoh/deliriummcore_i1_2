@@ -1,0 +1,42 @@
+{% extends "core/base.html"%}
+
+{% block title %}Agregar Organizador{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="py-2">
+        <a href="{% url 'core:tool_orgmain_index' %}"><button class="btn btn-dark">Regresar</button></a>
+    </div>
+    
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1>{{ tool.verbosename }}</h1>
+        <p>Agregar Organizador</p>
+
+
+        <div class="container mt-3">
+            <h2>Agregar Organizador</h2>
+            <div class="container">
+                <form action="{% url 'core:tool_orgmain_add_org' %}" method="post">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Nombre de Usuario</span>
+                        <input type="text" name="user" class="form-control" placeholder="Usuario" aria-label="Usuario" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Nombre</span>
+                        <input type="text" name="name" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
+                    </div>
+                    <button type="submit" class="btn btn-primary text-center">Agregar</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "oldcore/base.html"%}
+
+{% block title %}Dashboard ADMIN - DLMM{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <h1>Admin</h1>
+        <p>Hola {{ user.username }}!</p>
+        
+        <div class="container mt-3">
+            <h2>Herramientas</h2>
+        </div>
+
+
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-4">
+
+                <div class="col p-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Lista Requests</h5>
+                            <a href="{% url 'oldcore:admin_lista_requests' %}" class="card-link">Entrar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col p-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">RP Check</h5>
+                            <a href="{% url 'oldcore:rp_check_select' %}" class="card-link">Entrar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col p-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Log WebSocket</h5>
+                            <a href="{% url 'oldcore:log_websocket' 'default' %}" class="card-link">Entrar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col p-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Manejo de Efectivo</h5>
+                    
+                    
+                            <a href="{% url 'oldcore:cash_index' %}" class="card-link">Entrar</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col p-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Comisiones</h5>
+                            <a href="" class="card-link">Entrar</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="container">
+        <p>Hola</p>
+        <p>Hola 2</p>
+    </div>
+    
+</div>
+
+
+
+{% endblock %}

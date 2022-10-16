@@ -1,0 +1,39 @@
+.col{
+    text-align: center;
+}
+.container{
+    background-color: black;
+    text-align: center;
+    
+}
+#qr {
+    
+}
+h6{
+    background-color: black;
+    padding-top: 10px;
+    font-size: medium;
+    color: white;
+}
+
+h1 {
+    padding-top: 10px;
+    color: white;
+}
+
+body{
+    background-color: black;
+    
+}
+
+
+
+
+@font-face {
+    font-family: 'radwave';
+    src: url('radwave.woff2') format('woff2'),
+         url('radwave.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

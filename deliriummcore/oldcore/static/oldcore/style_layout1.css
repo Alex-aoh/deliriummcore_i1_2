@@ -1,0 +1,59 @@
+body {
+    font-family: sans-serif;
+    color: black;
+  }
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+.nav-link {
+    color: black;
+}
+
+#deliriumm {
+    font-family: 'radwave', Arial, Helvetica, sans-serif;
+    color: black;
+}
+#formlogin {
+    text-align: center;
+    color: white;
+}
+
+#user, #password {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+
+#login {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+
+#message {
+    padding-bottom: 10px;
+    text-align: center;
+    color: white;
+    
+}
+@font-face {
+    font-family: 'radwave';
+    src: url('radwave.woff2') format('woff2'),
+         url('radwave.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

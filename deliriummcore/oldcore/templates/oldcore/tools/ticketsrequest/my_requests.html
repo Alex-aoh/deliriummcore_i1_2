@@ -1,0 +1,98 @@
+{% extends "oldcore/base.html"%}
+
+{% block title %}Wavess Core{% endblock %}
+
+{% block content %}
+
+<h1>Requests - <a href="{% url 'oldcore:lista_requests' %}">Ver en Lista</a> </h1>
+
+
+
+<div class="row">
+
+    {% for ticket in ticketspe %}
+    
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="mb-1">
+                            <a href="{% url 'oldcore:request_view' ticket.pk %}">Ticket Request #{{ ticket.pk }}</a></div>
+                        <div class="mb-0">Estado: {{ ticket.get_status_display }}</div>
+                        <div class="mb-0">Cliente: {{ ticket.client }}</div>
+                        <div class="mb-0">Boletos: {{ ticket.q_tickets }} - Metodo: {{ ticket.get_payment_method_display }}</div>
+                        {% if ticket.payment_method == "CASH" %}
+                        <div class="mb-0">Efectivo entregado: {% if ticket.cash_pay == True %}Si{% else %}No{% endif %}</div>
+                        {% endif %}
+                        <div class="mb-0">Fase {{ ticket.fase.name }} - {{ ticket.fase.price }} MXN</div>
+                        <div class="mb-0">Total: {{ ticket.total }} MXN</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+<div class="row">
+
+    {% for ticket in ticketsap %}
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="mb-1">
+                            <a href="{% url 'oldcore:request_view' ticket.pk %}">Ticket Request #{{ ticket.pk }}</a></div>
+                        <div class="mb-0">Estado: {{ ticket.get_status_display }}</div>
+                        <div class="mb-0">Cliente: {{ ticket.client }}</div>
+                        <div class="mb-0">Boletos: {{ ticket.q_tickets }} - Metodo: {{ ticket.get_payment_method_display }}</div>
+                        {% if ticket.payment_method == "CASH" %}
+                        <div class="mb-0">Efectivo entregado: {% if ticket.cash_pay == True %}Si{% else %}No{% endif %}</div>
+                        {% endif %}
+                        <div class="mb-0">Fase {{ ticket.fase.name }} - {{ ticket.fase.price }} MXN</div>
+                        <div class="mb-0">Total: {{ ticket.total }} MXN</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% endfor %}
+
+</div>
+
+<div class="row">
+
+    {% for ticket in ticketsre %}
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="mb-1">
+                            <a href="{% url 'oldcore:request_view' ticket.pk %}">Ticket Request #{{ ticket.pk }}</a></div>
+                        <div class="mb-0">Estado: {{ ticket.get_status_display }}</div>
+                        <div class="mb-0">Cliente: {{ ticket.client }}</div>
+                        <div class="mb-0">Boletos: {{ ticket.q_tickets }} - Metodo: {{ ticket.get_payment_method_display }}</div>
+                        {% if ticket.payment_method == "CASH" %}
+                        <div class="mb-0">Efectivo entregado: {% if ticket.cash_pay == True %}Si{% else %}No{% endif %}</div>
+                        {% endif %}
+                        <div class="mb-0">Fase {{ ticket.fase.name }} - {{ ticket.fase.price }} MXN</div>
+                        <div class="mb-0">Total: {{ ticket.total }} MXN</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "core/base.html"%}
+
+{% block title %}{{ tool.verbosename }}{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1>{{ tool.verbosename }}</h1>
+        <p>Hola {{ user.username }}!</p>
+
+
+
+          <div class="card shadow mb-4">
+            <div class="card-body ">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item border-0">
+                        <a class="nav-link" href="{% url 'core:tool_orgmain_lista' %}">Lista de Organizadores</a>
+                    </li>
+                    <a class="nav-link" href="{% url 'core:tool_orgmain_add_org' %}">Agregar Organizador</a>
+                    </li>
+                    <li class="nav-item border-0">
+                        <a class="nav-link" href="{% url 'core:tool_orgmain_add_org' %}">Borrar Organizador</a>
+                    </li>
+                    <li class="nav-item border-0">
+                        <a class="nav-link" href="{% url 'core:tool_orgmain_add_org' %}">Borrar Organizador</a>
+                    </li>
+        
+                </ul>
+            </div>
+        </div>
+
+
+    
+
+        
+
+    </div>
+
+    
+</div>
+
+
+
+{% endblock %}

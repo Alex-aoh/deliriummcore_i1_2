@@ -1,0 +1,235 @@
+{% extends "oldcore/base.html"%}
+
+{% block title %}Admin Request #{{ requestid }} - DLMM{% endblock %}
+
+{% block content %}
+
+
+<h1>Tickets - Admin</h1>
+
+
+
+<div class="card shadow mb-4 ">
+    <div class="card-body ">
+        <ul class="nav justify-content-center">
+            <li class="nav-item border-0">
+                <a class="nav-link" href="{% url 'oldcore:aprobar_request' requestid %}">Aprobar</a>
+            </li>
+            <li class="nav-item border-0">
+                <a class="nav-link" href="{% url 'oldcore:rechazar_request' requestid %}">Rechazar</a>
+            </li>
+            <li class="nav-item border-0">
+                <a class="nav-link" href="{% url 'oldcore:archivar_request' requestid %}">Archivar</a>
+            </li>
+            <li class="nav-item border-0">
+                <a class="nav-link" href="{% url 'oldcore:asignar_request' requestid %}">Asignar</a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<!-- Card 1 -->
+    <div class="card mb-4">
+        <!-- Card Header -->
+        <div class="card-header py-3">
+            <div class="row justify-content-between">
+                <div class="col-xl-4 col-md-6">
+                    <h6 class="m-0 text-primary">Ticket Request #{{ requestid }} <mark>Estado: {{ status_display }}</mark></h6>
+                </div>
+                <div class="col-xl-5 col-md-6">
+                    <div class="text-end">
+                        <a href="{% url 'oldcore:admin_index' %}"><button type="button" class="btn btn-success btn-sm">Admin Index</button></a>
+                        
+                        <a href="{% url 'oldcore:request_view' requestid %}"><button type="button" class="btn btn-secondary btn-sm">Regresar a Request</button></a>
+                        <a href="{% url 'oldcore:delete_ticket_request' requestid %}"><button type="button" class="btn btn-danger btn-sm">Borrar Request</button></a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Part -->
+
+<div class="row">
+    {% comment %} col-xl-4 tamaño main {% endcomment %}
+<div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary mb-1">
+                        Información del evento</div>
+                    <div class="p mb-0 text-gray-800">
+                        {{ ticketrequest.event.name }}
+                    </div>
+                    <div class="p mb-0 text-gray-800">
+                        {{ ticketrequest.event.datetime }}
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Part -->
+
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary mb-1">
+                        Tickets</div>
+                    <div class="p mb-0 text-gray-800">
+                        Cantidad: {{  ticketrequest.q_tickets }}
+                    </div>
+                    <div class="p mb-0 text-gray-800">
+                        Total: {{  ticketrequest.total }} MXN
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Part -->
+
+<div class="col-xl-5 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary mb-1">
+                        Pago - {{ ticketrequest.get_payment_method_display }}</div>
+                    {% if ticketrequest.payment_method == "CASH" %}
+                    <div class="p mb-0 text-gray-800">
+                        Comprobante: Efectivo
+                    </div>
+                    {% endif %}
+                    {% if not ticketrequest.payment_method == "CASH" %}
+                    <div class="p mb-0 text-gray-800">
+                        Comprobante: <a href="/media/{{ticketrequest.comprobante}}" target="_blank" rel="noopener noreferrer">Ver Comprobante</a>
+                    </div>
+                   {% endif %}
+                    <div class="p mb-0 text-gray-800">
+                        Referencía: {{  ticketrequest.reference }}
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Part -->
+
+<div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary mb-1">
+                        Request</div>
+                    <div class="p mb-0 text-gray-800">
+                        Cliente: {{ ticketrequest.client }}
+                    </div>
+                    <div class="p mb-0 text-gray-800">
+                        Request: {{ ticketrequest.created }}
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Part -->
+
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary mb-1">
+                        Request</div>
+                    <div class="p mb-0 text-gray-800">
+                        Hecha por: @{{ ticketrequest.user.username }}
+                    </div>
+                    {% if ticketrequest.staff_asigned != "none" %}
+                    <div class="p mb-0 text-gray-800">
+                        Staff asignado: @{{ ticketrequest.staff_asigned }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Part -->
+{% if ticketrequest.status == "AP" or ticketrequest.status == "AR" %}
+<div class="col-xl-4 col-md-6 mb-4">
+<div class="card border-left-primary shadow h-100 py-2">
+<div class="card-body">
+    <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-primary mb-1">
+                Tickets - <a href="{% url 'oldcore:image_tickets' requestid %}">Guardar en Imagen</a></div>
+            {% for ticket in ticketslist %}
+            <div class="p mb-0 text-gray-800">
+                <a href="{% url 'oldcore:image_ticket' ticket.hash %}">Ticket {{ forloop.counter }} - #{{ ticket.hash |slice:':-15' }}...</a> 
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-auto">
+            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{% endif %}
+
+<!-- Descripción Area -->
+</div>
+<div class="card-header py-3">
+<div class="text-start m-0 font-weight-bold text-primary">
+    Comentario
+</div>
+</div>
+<div class="card-body">
+    <p class="mb-0">{{ ticketrequest.context}}</p>
+</div>
+</div>
+
+
+<!-- For Loop Comments (conv) -->
+
+{% if comments %}
+<div class="card mb-4">
+{% for comment in comments %}
+     <div class="card-body">
+            <h6>@{{ comment.user.username }}</h6>
+            <p class="mb-0">{{ comment.text }}</p>
+    </div>
+{% endfor %}
+    </div>
+{% endif %}
+
+
+{% endblock content %}
