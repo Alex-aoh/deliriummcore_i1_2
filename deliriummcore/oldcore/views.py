@@ -187,9 +187,24 @@ def admin_lista_requests(request):
         if getCoreRole(request.user) == 6 or getCoreRole(request.user) == 5:
 
             requests = TicketRequest.objects.all()
+            requests_aproved = TicketRequest.objects.filter(status="AP")
+            ticketcount_aproved = 0
+
+            for req in requests_aproved:
+                ticketcount_aproved = ticketcount_aproved + req.q_tickets 
+
+            requests_cash_aproved = TicketRequest.objects.filter(Q(payment_method="CASH") & Q(status="AP"))
+            ticketcount_cash_aproved= 0
+
+            for req in requests_cash_aproved:
+                ticketcount_cash_aproved = ticketcount_cash_aproved + req.q_tickets 
+
+
 
             return render(request, 'oldcore/tools/ticketsrequest/admin_lista_requests.html', {
-                "requests": requests
+                "requests": requests,
+                "ticketcount_aproved": ticketcount_aproved,
+                "ticketcount_cash_aproved": ticketcount_cash_aproved,
             })
         else:
             return HttpResponseRedirect(reverse("main:home"))
