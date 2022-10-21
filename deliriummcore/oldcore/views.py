@@ -208,7 +208,7 @@ def admin_lista_requests(request):
             requests_dep_aproved = TicketRequest.objects.filter(Q(payment_method="DEPOSIT") & Q(status="AP"))
             ticketcount_dep_aproved= 0
 
-            for req in requests_trans_aproved:
+            for req in requests_dep_aproved:
                 ticketcount_dep_aproved = ticketcount_dep_aproved + req.q_tickets 
 
 
@@ -218,7 +218,7 @@ def admin_lista_requests(request):
                 "ticketcount_cash_aproved": ticketcount_cash_aproved,
                 "ticketcount_trans_aproved": ticketcount_trans_aproved,
                 "ticketcount_dep_aproved": ticketcount_dep_aproved,
-                
+
             })
         else:
             return HttpResponseRedirect(reverse("main:home"))
