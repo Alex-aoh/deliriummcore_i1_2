@@ -199,12 +199,26 @@ def admin_lista_requests(request):
             for req in requests_cash_aproved:
                 ticketcount_cash_aproved = ticketcount_cash_aproved + req.q_tickets 
 
+            requests_trans_aproved = TicketRequest.objects.filter(Q(payment_method="TRANSFER") & Q(status="AP"))
+            ticketcount_trans_aproved= 0
+
+            for req in requests_trans_aproved:
+                ticketcount_trans_aproved = ticketcount_trans_aproved + req.q_tickets 
+
+            requests_dep_aproved = TicketRequest.objects.filter(Q(payment_method="DEPOSIT") & Q(status="AP"))
+            ticketcount_dep_aproved= 0
+
+            for req in requests_trans_aproved:
+                ticketcount_dep_aproved = ticketcount_dep_aproved + req.q_tickets 
 
 
             return render(request, 'oldcore/tools/ticketsrequest/admin_lista_requests.html', {
                 "requests": requests,
                 "ticketcount_aproved": ticketcount_aproved,
                 "ticketcount_cash_aproved": ticketcount_cash_aproved,
+                "ticketcount_trans_aproved": ticketcount_trans_aproved,
+                "ticketcount_dep_aproved": ticketcount_dep_aproved,
+                
             })
         else:
             return HttpResponseRedirect(reverse("main:home"))
