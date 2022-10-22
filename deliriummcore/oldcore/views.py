@@ -640,7 +640,8 @@ def cash_index(request):
         cash_faltante = 0
 
         for req in requests:
-            cash_faltante = cash_faltante + req.q_tickets
+            if req.cash_pay == False:
+                cash_faltante = cash_faltante + req.q_tickets
 
         if getCoreRole(request.user) == 6 or getCoreRole(request.user) == 5:
             return render(request, 'oldcore/cash/cash_index.html', {
