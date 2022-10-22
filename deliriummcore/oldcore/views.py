@@ -637,7 +637,10 @@ def cash_index(request):
 
         requests = TicketRequest.objects.filter(payment_method="CASH")
 
-        cash_faltante = TicketRequest.objects.filter(Q(payment_method="CASH") & Q(cash_pay=False))
+        cash_faltante = 0
+
+        for req in requests:
+            cash_faltante = cash_faltante + req.q_tickets
 
         if getCoreRole(request.user) == 6 or getCoreRole(request.user) == 5:
             return render(request, 'oldcore/cash/cash_index.html', {
