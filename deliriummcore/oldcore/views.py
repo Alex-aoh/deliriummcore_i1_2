@@ -1,4 +1,5 @@
 import os
+from re import T
 from webbrowser import get
 import imgkit
 import mimetypes
@@ -7,7 +8,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from main.methods import checkCoreAccess, getCoreRole
-from oldcore.models import Event, TicketRequest, Ticket, Seller, Fase
+from oldcore.models import Event, TicketRequest, Ticket, Seller, Fase, Entrada
 from django.conf import settings
 from oldcore.methods import checkSeller
 from django.db.models import Q
@@ -211,6 +212,12 @@ def admin_lista_requests(request):
             for req in requests_dep_aproved:
                 ticketcount_dep_aproved = ticketcount_dep_aproved + req.q_tickets 
 
+            entrada_total = Entrada.objects.all()
+            totale = 0
+
+            for e in entrada_total:
+                totale = totale + e.price
+
 
             return render(request, 'oldcore/tools/ticketsrequest/admin_lista_requests.html', {
                 "requests": requests,
@@ -218,6 +225,7 @@ def admin_lista_requests(request):
                 "ticketcount_cash_aproved": ticketcount_cash_aproved,
                 "ticketcount_trans_aproved": ticketcount_trans_aproved,
                 "ticketcount_dep_aproved": ticketcount_dep_aproved,
+                "totale": totale,
 
             })
         else:
@@ -636,6 +644,7 @@ def cash_index(request):
         checkSeller(request.user)
 
         requests = TicketRequest.objects.filter(payment_method="CASH")
+
 
         cash_faltante = 0
 
