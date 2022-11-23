@@ -33,8 +33,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '0.0.0.0',
     '192.168.1.74',
-    '34.226.123.57',
-    'wavesscore.ddns.net',
+    '3.88.178.205',
+    'wavessevents.ddns.net',
 ]
 
 
